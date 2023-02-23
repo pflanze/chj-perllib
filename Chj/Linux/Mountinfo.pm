@@ -1,5 +1,5 @@
 #
-# Copyright 2013-2020 by Christian Jaeger, christian at jaeger mine nu
+# Copyright 2013-2023 by Christian Jaeger, christian at jaeger mine nu
 # Published under the same terms as perl itself
 #
 # $Id$
@@ -82,6 +82,7 @@ sub mounts {
         stretch=> $fields11,
         buster=> $fields11, # just assuming
         bullseye=> $fields11, # just assuming
+        bookworm=> $fields11, # just assuming
     };
     our @fields= do {
 	my $v= `cat /etc/debian_version`;
