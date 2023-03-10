@@ -1,9 +1,8 @@
 # Wed Jun 25 00:40:40 2008  Christian Jaeger, christian at jaeger mine nu
 #
-# Copyright 2008 by Christian Jaeger
+# Copyright 2008-2023 by Christian Jaeger
 # Published under the same terms as perl itself
 #
-# $Id$
 
 =head1 NAME
 
@@ -109,11 +108,11 @@ sub trash {
     for my $path (@_) {
 	my $onlyname= basename $path;
 	if ($onlyname eq '.') {
-	    warn "Ignoring '.'\n";
+	    warn "Ignoring '$path' since the filename is just '.'\n";
 	    next;
 	}
 	if ($onlyname eq '..') {
-	    warn "Ignoring '..'\n";
+	    warn "Ignoring '$path' since the filename is just '..'\n";
 	    next;
 	}
 	my $trashedpath= "$trashdir/$onlyname";
