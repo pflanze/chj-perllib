@@ -417,7 +417,7 @@ sub git_unquote_path ( $ ) {
 	my $flag_last_was_backslash=0;
 	for (my $i=0; $i<$len; $i++) {
 	    my $piece= $$s[$i];
-	    if ($piece =~ s/^(\d+)//) {
+	    if ($piece =~ s/^(\d{1,3})//) {
 		push @$r, chr(oct $1), $piece;
 	    #} elsif $piece =~ m/^\\/  EHR that can  never happen right? here's the HACK/wrong bit.
 	    } else {
