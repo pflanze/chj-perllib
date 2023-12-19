@@ -82,7 +82,7 @@ use constant +{
 	       E_invalidmonthname=> 2,
 	       E_dateoutofrange=> 3,
 	      };
-our @errmsgs; #  hm schon wieder das gleiche wie in Chj/Parse/Date/Syslog
+our @errmsgs; # again same as in Chj/Parse/Date/Syslog
 $errmsgs[E_invalidformat]= "invalid log line format";
 $errmsgs[E_invalidmonthname]= "invalid month name";
 $errmsgs[E_dateoutofrange]= "date out of range";
@@ -97,11 +97,10 @@ use Class::Array
 
 
 
-# my ($mday,$monname,$year,$hour,$min,$sec); nope: will die zeit gar nicht immer!
+# my ($mday,$monname,$year,$hour,$min,$sec); no: don't want the time any more
 
 sub parseline {
     my($self,$line)=@_; #don't destroy @_!
-#old:    unless ($line=~ m#^(\S+) (\S+) (\S+) \[(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+) ([+-]\d+)\] "(.*?)" (\d+) (?:-|(\d+)) "(?:-|(.*?))" "(?:-|(.*?))"$#
     unless ($line=~ m#^(\S+) (\S+) (\S+) \[(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+) ([+-]\d+)\] "(.*?)" (\d+) (?:-|(\d+))(?: "(?:-|(.*?))" "(?:-|(.*?))")?$#
 	   ) {
 	$$self[Error]= E_invalidformat;
@@ -125,7 +124,7 @@ sub unixtime {
     $$self[Mon]= $Chj::Parse::Date::months::short_english_month{$$self[Monname]}
       or do{ $$self[Error]=E_invalidmonthname; return };
     my $rv=strftime('%s',@$self[Sec,Min,Hour,Mday],$$self[Mon]-1,$$self[Year]-1900,
-		    #$$self[TZone] HMMMM  GRRRRR scheint gar nicht unterstützt zu sein.
+		    #$$self[TZone] hmm not supported?
 		   );
     if ($rv<0) { $$self[Error]=E_dateoutofrange; return };
     return $$self[Unixtime]=$rv;
