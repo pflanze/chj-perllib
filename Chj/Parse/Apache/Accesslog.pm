@@ -101,8 +101,7 @@ use Class::Array
 
 sub parseline {
     my($self,$line)=@_; #don't destroy @_!
-    unless ($line=~ m#^(\S+) (\S+) (\S+) \[(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+) ([+-]\d+)\] "(.*?)" (\d+) (?:-|(\d+))(?: "(?:-|(.*?))" "(?:-|(.*?))")?$#
-	   ) {
+    unless ($line=~ m#^(\S+) (\S+) (\S+) \[(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+) ([+-]\d+)\] "(.*?)" (\d+) (?:-|(\d+))(?: "(?:-|(.*?))" "(?:-|(.*?))")?(?:\s|$)#) {
 	$$self[Error]= E_invalidformat;
 	return;
     }
