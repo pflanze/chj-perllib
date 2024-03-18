@@ -100,7 +100,8 @@ sub mounts {
 		if (my $fields= $$release_name_to_fields{$release_name}) {
 		    @$fields
 		} else {
-		    die "don't know how to handle release '$release_name'";
+		    #die "don't know how to handle release '$release_name'";
+		    @$fields11
 		}
 	    } else {
 		die "no match for release name in: '$v'";
