@@ -143,7 +143,7 @@ sub writefile {
 	if ($maybe_alreadyrunningcb) {
 	    &$maybe_alreadyrunningcb
 	} else {
-	    croak __PACKAGE__.": writefile '$$s[Path]': there is already a daemon running ($u\@$h pid $p)";##(warum croak?)    warum  package?.  warum  exception?  warum sagen es gehe um daemon?  wenns doch unabhaenige funktionalitaet ist oder nid? nid ganz? krank.
+	    die __PACKAGE__.": writefile '$$s[Path]': there is already a daemon running ($u\@$h pid $p)";##(warum croak?)    warum  package?.  warum  exception?  warum sagen es gehe um daemon?  wenns doch unabhaenige funktionalitaet ist oder nid? nid ganz? krank.
 	}
     }
 }
@@ -161,7 +161,7 @@ sub is_running {
 	if ($ec == ENOENT) {
 	    0
 	} else {
-	    croak "open '$$s[Path]': $estr";
+	    die "open '$$s[Path]': $estr";
 	}
     }
 }
@@ -170,7 +170,7 @@ sub readfile {
     my $s=shift;
     my $fh= xsysopen $$s[Path],O_RDWR;
     if (flock ($fh, LOCK_EX|LOCK_NB)) {
-	croak "file '$$s[Path]' not currently locked";
+	die "file '$$s[Path]' not currently locked";
     } else {
 	my $cont= $fh->xcontent;
 	chomp $cont;
@@ -185,7 +185,7 @@ sub autoclean {
     if (!@_ or $_[0]) {
 	bless $$s[_Fh],"Chj::Unix::DaemonRunfile::File";
     } elsif (@_) {
-	croak __PACKAGE__.": autoclean cannot really be undone";#well isch ne lüge da ich ja eh hardcoded hab
+	die __PACKAGE__.": autoclean cannot really be undone";#well isch ne lüge da ich ja eh hardcoded hab
     }
 }
 

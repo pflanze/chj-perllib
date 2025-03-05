@@ -184,7 +184,7 @@ sub fork {
 		&$maybe_alreadyrunningcb
 	    } elsif ($cont=~ s/^\001//s) {
 		$cont=~ s/ at .*?\z//s;
-		croak $cont;
+		die $cont;
 	    } else {
 		die "error in transmission??"
 	    }

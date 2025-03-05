@@ -34,7 +34,7 @@ use Class::Array -fields=> (
 sub new {
     my $class=shift;
     my $self= $class->SUPER::new;
-    @_==2 or croak "new: expecting factory,runpath";
+    @_==2 or die "new: expecting factory,runpath";
     ($$self[_Factory],$$self[Runpath])=@_;
     $self
 }
