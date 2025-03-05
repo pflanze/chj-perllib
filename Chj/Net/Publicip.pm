@@ -108,7 +108,7 @@ sub _ips {
     while (<$ipout>) {
 	chomp;
       cont:
-	if (my ($iface)= m/^\d+:\s*([\w\@]+):/) {
+	if (my ($iface)= m/^\d+:\s*([\w\@-]+):/) {
 	    my $is_down= /state DOWN/;
 	    while (<$ipout>) {
 		chomp;
