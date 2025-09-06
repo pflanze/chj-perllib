@@ -417,9 +417,12 @@ sub git_unquote_path ( $ ) {
 	my $flag_last_was_backslash=0;
 	for (my $i=0; $i<$len; $i++) {
 	    my $piece= $$s[$i];
-	    if ($piece =~ s/^(\d{1,3})//) {
+            if ($piece eq '') {
+                push @$r, '\\';
+                $i++;
+                push @$r, $$s[$i];
+            } elsif ($piece =~ s/^(\d{1,3})//) {
 		push @$r, chr(oct $1), $piece;
-	    #} elsif $piece =~ m/^\\/  EHR that can  never happen right? here's the HACK/wrong bit.
 	    } else {
 		#hmm. ah yep if it is empty?
 		# (shoult put this test to above--but doesn't matter except for computational cost)
